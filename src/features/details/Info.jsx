@@ -1,22 +1,20 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectNeighbors } from '../../store/details/details-selector';
-import { loadNeighborsByBorder } from '../../store/details/details-actions';
+
+import { useNeighbors } from './use-neighbors';
 import {
-  Wrapper,
   InfoImage,
   InfoTitle,
-  ListGroup,
   List,
+  ListGroup,
   ListItem,
   Meta,
-  TagGroup,
   Tag,
+  TagGroup,
+  Wrapper,
 } from './Info.styled';
 
-const Info = (props) => {
-  const {
+export const Info = (props) => {
+  let {
     name,
     nativeName,
     flag,
@@ -31,35 +29,24 @@ const Info = (props) => {
     push,
   } = props;
 
-  const updatedBorders = borders.map((border) =>
-    border === 'RUS' ? 'Russia is a Terrorist state' : border
-  );
+  if (name === 'Russian Federation') {
+    name = 'Russia is a Terrorist state';
+  }
+  const neighbors = useNeighbors(borders);
 
-  const dispatch = useDispatch();
-
-  const neighbors = useSelector(selectNeighbors);
-
-  useEffect(() => {
-    if (updatedBorders.length) {
-      dispatch(loadNeighborsByBorder(updatedBorders));
-    }
-  }, [updatedBorders, dispatch]);
-
-  const country =
-    name === 'Russian Federation' ? 'Russia is a Terrorist state' : name;
   return (
     <Wrapper>
-      <InfoImage src={flag} alt={country} />
+      <InfoImage src={flag} alt={name} />
 
       <div>
-        <InfoTitle>{country}</InfoTitle>
+        <InfoTitle>{name}</InfoTitle>
         <ListGroup>
           <List>
             <ListItem>
               <b>Native Name:</b> {nativeName}
             </ListItem>
             <ListItem>
-              <b>Population:</b> {population}
+              <b>Population</b> {population}
             </ListItem>
             <ListItem>
               <b>Region:</b> {region}
@@ -73,28 +60,28 @@ const Info = (props) => {
           </List>
           <List>
             <ListItem>
-              <b>Top Level Domain: </b>
+              <b>Top Level Domain</b>
               {topLevelDomain.map((d) => (
                 <span key={d}>{d}</span>
               ))}
             </ListItem>
             <ListItem>
-              <b>Currency: </b>
+              <b>Currency</b>
               {currencies.map((c) => (
-                <span key={c.code}>{c.country} </span>
+                <span key={c.code}>{c.name} </span>
               ))}
             </ListItem>
             <ListItem>
-              <b>languages: </b>
+              <b>Top Level Domain</b>
               {languages.map((l) => (
-                <span key={l.country}>{l.country}</span>
+                <span key={l.name}>{l.name}</span>
               ))}
             </ListItem>
           </List>
         </ListGroup>
         <Meta>
-          <b>Border Countries: </b>
-          {!updatedBorders.length ? (
+          <b>Border Countries</b>
+          {!borders.length ? (
             <span>There is no border countries</span>
           ) : (
             <TagGroup>
@@ -127,19 +114,13 @@ Info.propTypes = {
     PropTypes.shape({
       code: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      symbol: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
   languages: PropTypes.arrayOf(
     PropTypes.shape({
-      iso639_1: PropTypes.string.isRequired,
-      iso639_2: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      nativeName: PropTypes.string.isRequired,
     })
-  ),
-  borders: PropTypes.arrayOf(PropTypes.string).isRequired,
+  ).isRequired,
+  borders: PropTypes.arrayOf(PropTypes.string),
   push: PropTypes.func.isRequired,
 };
-
-export default Info;

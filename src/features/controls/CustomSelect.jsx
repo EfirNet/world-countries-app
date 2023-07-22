@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { CustomSelectStyled } from './CustomSelect.styled';
 
-const CustomSelect = (props) => {
+import { CustomSelectStyled } from './styled/CustomSelect.styled';
+
+export const CustomSelect = (props) => {
   return <CustomSelectStyled {...props} />;
 };
 
@@ -13,5 +14,3 @@ CustomSelect.propTypes = {
   value: PropTypes.any,
   onChange: PropTypes.func,
 };
-
-export default CustomSelect;

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import {
   Wrapper,
   CardImage,
@@ -44,4 +45,4 @@ Card.propTypes = {
   ).isRequired,
 };
 
-export default Card;
+export { Card };

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { ContainerStyled } from './Container.styled';
 
 const Container = ({ children }) => {
@@ -9,4 +10,4 @@ Container.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Container;
+export { Container };

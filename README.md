@@ -1,15 +1,16 @@
 
 # 🌍 WORLD COUNTRIES APP
 
-✅ The **WORLD COUNTRIES** is a test application created using `React.js`, `Redux`, and `styled-components`❗<br />
+✅ The **WORLD COUNTRIES** is a test application created using `React.js`, `Redux-Toolkit`, and `styled-components`❗<br />
 ✅ It leverages the `REST Countries API` to provide information about countries around the world❗ <br />
 ✅ He app also includes a `color theme switcher` feature❗
 
 ## Technologies Used
 
 - 👉 React.js
-- 👉 Redux
-- 👉 styled-components
+- 👉 Redux-Toolkit (Async Thunk)
+- 👉 Redux-Persist
+- 👉 Styled-Components
 - 👉 REST Countries API
 
 ## Features
@@ -33,6 +34,6 @@
 
 <div align="right"  title="Linus Torvalds is the famous programmer and creator of the Linux operating system kernel.">
 
-> *"Software is like sex: it's better when it's free." - Linus Torvalds*
+> *"Always start with what works and then perfect it." - Linus Torvalds*
 
 </div>

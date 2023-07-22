@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import Container from '../Container';
+
+import { Container } from '../Container';
 import { Wrapper } from './Main.styled';
 
 const Main = ({ children }) => {
@@ -14,4 +15,4 @@ Main.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Main;
+export { Main };

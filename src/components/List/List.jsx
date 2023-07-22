@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { Wrapper } from './List.style';
 
 const List = ({ children }) => {
@@ -9,4 +10,4 @@ List.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default List;
+export { List };
